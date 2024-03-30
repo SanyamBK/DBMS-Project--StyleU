@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>StyleU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images/logo.avif" type="image/x-icon">
+    <style>
+        /* import open sans */
+        @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Spartan", sans-serif;
+        }
+
+
+
+
+        html,
+        body {
+            scroll-behavior: smooth;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            color: white;
+            height: 100%;
+            width: 100%;
+
+            background-size: cover;
+            background-position: top 50% right 25%;
+        }
+
+
+        h1 {
+            font-size: 50px;
+            line-height: 64px;
+
+        }
+
+        h2 {
+            font-size: 46px;
+            line-height: 54px;
+            margin-bottom: 20px;
+
+        }
+
+        h4 {
+            font-size: 20px;
+
+        }
+
+        h6 {
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        p {
+            font-size: 16px;
+
+            margin: 15px 0 20px 0;
+        }
+
+        .section-p1 {
+            padding: 40px 80px;
+        }
+
+        .section-p2 {
+            padding: 40px 0;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin: auto;
+            max-width: 100%;
+            background-color: rgb(22, 22, 22);
+            box-shadow: 0 0 10px rgb(255, 255, 255);
+
+            z-index: 999;
+            position: sticky;
+            top: 0;
+            left: 0;
+
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 25px;
+        }
+
+        .navbar li {
+            list-style: none;
+            padding: 0 20px;
+        }
+
+        .navbar li a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease 0s;
+        }
+
+        .navbar li a:hover {
+            color: rgb(231, 194, 92);
+
+        }
+
+        .navbar li a.active {
+            color: rgb(231, 194, 92);
+            border-bottom: 2px solid rgb(231, 194, 92);
+
+        }
+
+        .page-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 10vh;
+            background-color: rgb(61, 59, 59);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding-top: 5vh;
+
+        }
+
+
+        .logo {
+            width: 65px;
+            height: 60px;
+            margin-left: 25px;
+            margin-top: 10px;
+            /* Adjust the margin-top value as needed */
+
+        }
+
+
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(22, 22, 22);
+            background-repeat: no-repeat;
+            background-position: 20% 30%;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            z-index: 999;
+            /* Ensure footer is above other content */
+
+            /* Adjust the background color and opacity as needed */
+        }
+
+
+        footer .col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+
+        }
+
+        footer h4 {
+            font-size: 14px;
+            padding-bottom: 20px;
+
+
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 0 0 8px 0;
+        }
+
+        footer a {
+            font-size: 13px;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        footer a:hover {
+            color: #e7c25c;
+        }
+
+        footer .follow {
+            margin-top: 20px;
+        }
+
+        footer .follow i {
+            color: white;
+            padding-right: 4px;
+            cursor: pointer;
+        }
+
+        footer .follow i:hover {
+            color: #e7c25c;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .space-between {
+            justify-content: space-between;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        .semibold {
+            font-weight: bolder;
+        }
+
+        .mx-2 {
+            margin-left: 12px;
+            margin-right: 12px;
+        }
+
+        /* Additional styles for login page */
+
+        .login-container {
+          
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(85vh - 90px); /* Adjusted height considering the header height */
+            padding: 20px;
+        }
+
+        .login-form {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #e7c25c;
+            border-radius: 5px;
+        }
+
+
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #e7c25c;
+            border-radius: 5px;
+            background-color: #222;
+            color: white;
+        }
+
+        .login-form input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #e7c25c;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-form input[type="submit"]:hover {
+            background-color: #b38e37;
+        }
+
+        .signup-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #e7c25c;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="header">
+        <a href="/">
+            <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\logo.avif" class="logo" alt="StyleU" />
+        </a>
+
+        <div>
+            <ul class="navbar">
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+
+                <li><a href="/cart"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                <li><a class="active" href="/login"><i class="fa-solid fa-user"></i></a></li>
+            </ul>
+
+        </div>
+    </section>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form class="login-form" action="" method="POST">
+            <input type="text" name="email" id="email" placeholder="Email" required>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+        </form>
+        <div class="signup-link">
+            <p>New here? <a href="/signup">Sign Up</a></p>
+        </div>
+    </div>
+
+    <footer class="section-p1">
+
+        <div class="col">
+
+            <h4>Contact</h4>
+            <p><strong>Address: </strong> Indraprastha Institute of Information Technology Delhi, Okhla Industrial
+                Estate, Phase III, New Delhi, Delhi 110020</p>
+            <p><strong>Phone: </strong> +91 1234567890</p>
+            <p><strong>Hours: </strong> Mon-Sat, 09:00-17:00</p>
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="about.html">About Us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

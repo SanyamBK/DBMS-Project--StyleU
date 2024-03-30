@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>StyleU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images/logo.avif" type="image/x-icon">
+    <style>
+        /* import open sans */
+        @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Spartan", sans-serif;
+        }
+
+
+
+
+        html,
+        body {
+            scroll-behavior: smooth;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            color: white;
+            height: 100%;
+            width: 100%;
+
+            background-size: cover;
+            background-position: top 50% right 25%;
+        }
+
+
+        h1 {
+            font-size: 50px;
+            line-height: 64px;
+
+        }
+
+        h2 {
+            font-size: 46px;
+            line-height: 54px;
+
+        }
+
+        h4 {
+            font-size: 20px;
+
+        }
+
+        h6 {
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        p {
+            font-size: 16px;
+
+            margin: 15px 0 20px 0;
+        }
+
+        .section-p1 {
+            padding: 40px 80px;
+        }
+
+        .section-p2 {
+            padding: 40px 0;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin: auto;
+            max-width: 100%;
+            background-color: rgb(22, 22, 22);
+            box-shadow: 0 0 10px rgb(255, 255, 255);
+
+            z-index: 999;
+            position: sticky;
+            top: 0;
+            left: 0;
+
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 25px;
+        }
+
+        .navbar li {
+            list-style: none;
+            padding: 0 20px;
+        }
+
+        .navbar li a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease 0s;
+        }
+
+        .navbar li a:hover {
+            color: rgb(231, 194, 92);
+
+        }
+
+        .navbar li a.active {
+            color: rgb(231, 194, 92);
+            border-bottom: 2px solid rgb(231, 194, 92);
+
+        }
+
+        .hash {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 10vh;
+            background-color: rgb(61, 59, 59);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 14px;
+
+        }
+
+        .hash h2 {
+            padding-bottom: 15px;
+            color: white;
+            /* Set text color */
+            margin-bottom: 10px;
+            padding-bottom: 20px;
+            text-decoration: none;
+            /* Remove underline */
+        }
+
+        #hash {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: rgb(22, 22, 22);
+            color: white;
+            text-decoration: none;
+
+        }
+
+
+
+        #hash .pro-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: rgb(22, 22, 22);
+            color: white;
+        }
+
+        #hash .pro {
+            width: calc(23% - 20px);
+            /* Adjust width to accommodate spacing */
+            min-width: 250px;
+            padding: 10px 12px;
+            border: 1px solid #e7c25c;
+            border-radius: 7px;
+            cursor: pointer;
+            box-shadow: 20px 20px 30px rgba(75, 75, 75, 0.5);
+            background-color: #e7c25c;
+            margin-bottom: 20px;
+            /* Add some bottom margin between items */
+            position: relative;
+            text-decoration: none;
+            text-align: center;
+            /* Adjust the height as needed */
+        }
+
+        #hash .pro a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /*hover effect background black and text color white*/
+        #hash .pro:hover {
+            background-color: #000000;
+
+            box-shadow: 20px 20px 30px rgba(75, 75, 75, 0.7);
+        }
+
+
+        #hash .pro img {
+            width: 100%;
+            /* height: 200px;
+    object-fit: cover; */
+            border-radius: 5px;
+        }
+
+        #hash .pro h4 {
+            font-size: 20px;
+            padding: 7px 0;
+            padding-bottom: 1px;
+        }
+
+        .page-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 10vh;
+            background-color: rgb(61, 59, 59);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding-top: 5vh;
+
+        }
+
+
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 30vh;
+            background-color: rgb(61, 59, 59);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 14px;
+        }
+
+        .hero h2 {
+            padding-bottom: 15px;
+
+        }
+
+        .hero button {
+            background-color: transparent;
+            /* No initial background color */
+            color: #e7c25c;
+            /* Set the text color */
+            border: 2px solid #e7c25c;
+            /* Set the border color */
+            padding: 10px 20px;
+            /* Adjust padding as needed */
+            font-size: 18px;
+            /* Set the font size */
+            border-radius: 5px;
+            /* Optional: add rounded corners */
+            cursor: pointer;
+            width: 200px;
+            transition: background-color 0.3s ease;
+            /* Add a smooth transition effect */
+        }
+
+        .hero button:hover {
+            background-color: #b38e37;
+            /* Change the background color on hover */
+            color: #fff;
+            /* Change text color on hover */
+        }
+
+
+        .logo {
+            width: 65px;
+            height: 60px;
+            margin-left: 25px;
+            margin-top: 10px;
+            /* Adjust the margin-top value as needed */
+
+        }
+
+
+
+        #product1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: rgb(22, 22, 22);
+            color: white;
+
+        }
+
+        #product1 .pro-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: rgb(22, 22, 22);
+            color: white;
+        }
+
+        #product1 .pro {
+            width: calc(23% - 20px);
+            /* Adjust width to accommodate spacing */
+            min-width: 250px;
+            padding: 10px 12px;
+            border: 1px solid #e7c25c;
+            border-radius: 7px;
+
+            box-shadow: 20px 20px 30px rgba(75, 75, 75, 0.5);
+            background-color: #f7f5ec;
+            margin-bottom: 20px;
+
+            position: relative;
+
+        }
+
+
+
+
+        /*hover effect*/
+        #product1 .pro:hover {
+
+            box-shadow: 20px 20px 30px rgba(75, 75, 75, 0.7);
+        }
+
+        #product1 .pro img {
+            width: 100%;
+            /* height: 200px;
+    object-fit: cover; */
+            border-radius: 5px;
+        }
+
+        #product1 .pro h4 {
+            font-size: 20px;
+            padding: 10px 0;
+        }
+
+        #product1 .pro .des h4 {
+            padding-top: 7px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #558300;
+        }
+
+
+        #product1 .pro p {
+            font-size: 16px;
+            padding: 10px 0;
+        }
+
+        #product1 .pro .des {
+            text-align: start;
+            padding: 10px 0;
+        }
+
+        #product1 .pro .des .star {
+            color: #e7c25c;
+            font-size: 12px;
+        }
+
+        /*span for price*/
+        #product1 .pro span {
+            font-size: 18px;
+            color: #000000;
+            font-weight: 600;
+            padding: 10px 0;
+        }
+
+        /*h5*/
+        #product1 .pro h5 {
+            font-size: 12px;
+            color: #000000;
+            padding: 3px 0;
+        }
+
+        #product1 .pro .fa-cart-shopping {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50px;
+            background-color: #e9ffc1;
+            color: #558300;
+            text-align: center;
+            border: 1px solid #8bb935;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+
+        }
+
+        /*hover effect*/
+        #product1 .pro .fa-cart-shopping:hover {
+            background-color: #e7c25c;
+            color: #ffffff;
+            border: 1px solid #e7c25c;
+            cursor: pointer;
+        }
+
+
+        /* .left img{
+    width: 65px;
+    height: 60px;
+}
+
+.container{
+    max-width: 80vw;
+    background: grey;
+    margin: auto;
+}
+
+nav ul li {
+    list-style: none;
+    padding: 0 18px;
+} */
+
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(22, 22, 22);
+            background-repeat: no-repeat;
+            background-position: 20% 30%;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            z-index: 999;
+            /* Ensure footer is above other content */
+
+            /* Adjust the background color and opacity as needed */
+        }
+
+
+        footer .col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+
+        }
+
+        footer h4 {
+            font-size: 14px;
+            padding-bottom: 20px;
+
+
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 0 0 8px 0;
+        }
+
+        footer a {
+            font-size: 13px;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        footer a:hover {
+            color: #e7c25c;
+        }
+
+        footer .follow {
+            margin-top: 20px;
+        }
+
+        footer .follow i {
+            color: white;
+            padding-right: 4px;
+            cursor: pointer;
+        }
+
+        footer .follow i:hover {
+            color: #e7c25c;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .space-between {
+            justify-content: space-between;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        .semibold {
+            font-weight: bolder;
+        }
+
+        .mx-2 {
+            margin-left: 12px;
+            margin-right: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="header">
+        <a href="/">
+            <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\logo.avif" class="logo" alt="StyleU" />
+        </a>
+
+        <div>
+            <ul class="navbar">
+                <li><a href="/">Home</a></li>
+                <li><a class="active" href="/shop">Shop</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+
+                <li><a href="/cart"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                <li><a href="/login"><i class="fa-regular fa-user"></i></a></li>
+            </ul>
+
+        </div>
+
+    </section>
+
+    <section class="hero">
+
+        <h2>#shirts</h2>
+
+        <p>Summer Collection New Modern Products</p>
+
+    </section>
+
+    <section id="product1" class="section-p1">
+        <div class="pro-container">
+            <div class="pro">
+                <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\f2.jpg" alt="product1" />
+                <div class="des">
+                    <span>Nike Crown</span>
+                    <h5>Floral Lily Shirt</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+
+                    <h4>Rs 999</h4>
+                </div>
+                <button class="pro-button" data-product-id="14">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+            </div>
+            <div class="pro">
+                <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\f1.jpg" alt="product1" />
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5>Cartoon Astronaught Shirt</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+
+                    <h4>Rs 499</h4>
+                </div>
+                <button class="pro-button" data-product-id="15">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+            </div>
+            <div class="pro">
+                <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\f3.jpg" alt="product1" />
+                <div class="des">
+                    <span>Van Heusen</span>
+                    <h5>Floral Shirt</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+
+                    <h4>Rs 799</h4>
+                </div>
+                <button class="pro-button" data-product-id="16">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+            </div>
+            <div class="pro">
+                <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\f4.jpg" alt="product1" />
+                <div class="des">
+                    <span>Forever 21</span>
+                    <h5>White Shirt with Pink flowers</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+
+                    <h4>Rs 999</h4>
+                </div>
+                <button class="pro-button" data-product-id="17">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+            </div>
+            <div class="pro">
+                <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\f6.jpg" alt="product1" />
+                <div class="des">
+                    <span>Jian Jing</span>
+                    <h5>Orange Blue Shirt</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+
+                    <h4>Rs 1,599</h4>
+                </div>
+                <button class="pro-button" data-product-id="18">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+            </div>
+            <div class="pro">
+                <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\n5.jpg" alt="product1" />
+                <div class="des">
+                    <span>H&M</span>
+                    <h5>Denim Full Sleeves Shirt</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+
+                    <h4>Rs 1,999</h4>
+                </div>
+                <button class="pro-button" data-product-id="19">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+
+            </div>
+            <div class="pro">
+                <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\n2.jpg" alt="product1" />
+                <div class="des">
+                    <span>GAP</span>
+                    <h5>Full sleeves shirt with check pattern</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+
+                    <h4>Rs 999</h4>
+                </div>
+                <button class="pro-button" data-product-id="20">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+            </div>
+            <div class="pro">
+                <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\n8.jpg" alt="product1" />
+                <div class="des">
+                    <span>Khadi</span>
+                    <h5>Simple Shirt</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+
+                    <h4>Rs 999</h4>
+                </div>
+                <button class="pro-button" data-product-id="21">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+            </div>
+            <div class="pro">
+                <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\zara.jpg" alt="product1" />
+                <div class="des">
+                    <span>Zara</span>
+                    <h5>Black Tshirt</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+
+                    <h4>Rs 2,599</h4>
+                </div>
+                <button class="pro-button" data-product-id="22">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="section-p1">
+
+        <div class="col">
+
+    <h4>Contact</h4>
+            <p><strong>Address: </strong> Indraprastha Institute of Information Technology Delhi, Okhla Industrial
+                Estate, Phase III, New Delhi, Delhi 110020</p>
+            <p><strong>Phone: </strong> +91 1234567890</p>
+            <p><strong>Hours: </strong> Mon-Sat, 09:00-17:00</p>
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="about.html">About Us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -304,7 +304,7 @@ p {
     padding: 10px 12px;
     border: 1px solid #e7c25c;
     border-radius: 7px;
-    cursor: pointer;
+    
     box-shadow: 20px 20px 30px rgba(75, 75, 75, 0.5);
     background-color: #f7f5ec;
     margin-bottom: 20px;
@@ -392,6 +392,7 @@ p {
     background-color: #e7c25c;
     color: #ffffff;
     border: 1px solid #e7c25c;
+    cursor: pointer;
 }
 
 
