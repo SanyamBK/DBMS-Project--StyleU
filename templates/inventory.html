@@ -250,7 +250,7 @@
             background-color: rgb(22, 22, 22);
             background-repeat: no-repeat;
             background-position: 20% 30%;
-            position: fixed;
+            position: relative;
             bottom: 0;
             width: 100%;
             z-index: 999;
@@ -491,35 +491,17 @@
 
 <body>
 
-    {% if error_message %}
-    <div id ="error-message" class="alert alert-danger" role="alert">
-        {{ error_message }}
-        <span class="close-btn">&times;</span>
-    </div>
-    {% endif %}
 
     <section class="header">
         <a href="/">
             <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\logo.avif" class="logo" alt="StyleU" />
         </a>
 
-        <div>
-            <ul class="navbar">
-                <li><a href="/">Home</a></li>
-                <li><a href="/shop">Shop</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact Us</a></li>
-                <li><a class="active" href="/cart"><i class="fa-solid fa-bag-shopping"></i></a></li>
-                <li><a href="/login"><i class="fa-regular fa-user"></i></a></li>
-            </ul>
-
-        </div>
-
     </section>
 
     <section class="page-header">
 
-        <h2>Cart</h2>
+        <h2>Inventory</h2>
 
         <p></p>
 
@@ -530,54 +512,34 @@
         <table>
             <thead>
                 <tr>
+                    <th>Product ID</th>
                     <th>Brand</th>
                     <th>Description</th>
+                    <th>Quantity</th>
                     <th>Color</th>
                     <th>Price</th>
-                    <th>Size</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
-                {% for cart_item in cart_items %}
+                {% for item in inventory %}
                 <tr>
-                    <td>{{ cart_item.clothing_item.Brand }}</td>
-                    <td>{{ cart_item.clothing_item.Descriptions }}</td>
-                    <td>{{ cart_item.clothing_item.Colour }}</td>
-                    <td>{{ cart_item.clothing_item.Price }}</td>
-                    <td>{{ cart_item.Size }}</td>
-                    <!-- Apply .quantity class to the quantity cell -->
-                    <td class="quantity-cell">
-                        <form action="/cart" method="POST">
-                            <input type="hidden" name="product_id" value="{{ cart_item.clothing_item.ProductID }}">
-                            <input type="hidden" name="size" value="{{ cart_item.Size }}">
-                            <button class="quantity-btn minus-btn" type="submit" name="quantity" value="-1">-</button>
-                            <span class="quantity-data">{{ cart_item.Quantity }}</span>
-                            <button class="quantity-btn minus-btn" type="submit" name="quantity" value="1">+</button>
-                        </form>
-                    </td>
-                    <td>{{ cart_item.Value_Cart }}</td>
+                    <td>{{ item.ProductID }}</td>
+                    <!-- Assuming there's a foreign key relationship between inventory and clothing_item -->
+                    <!-- Access clothing item attributes using item.clothing_item -->
+                    <td>{{ item.clothing_item.Brand }}</td>
+                    <td>{{ item.clothing_item.Descriptions }}</td>
+                    <!-- Assuming Quantity is in the inventory table -->
+                    <td>{{ item.Quantity }}</td>
+                    <!-- Assuming Colour and Price are in the clothing_item table -->
+                    <td>{{ item.clothing_item.Colour }}</td>
+                    <td>{{ item.clothing_item.Price }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
             
+            
         </table>
-        <div class="cart-total-container">
-            <button id="continue-shopping-btn" class="continue-shopping-btn">
-                <a href="/shop" style="text-decoration: none; color: black;">Continue Shopping</a>
-            </button>
-
-            <form id="place-order-form" action="/order-history" method="POST">
-                <!-- Hidden input field to store the cart ID -->
-                <input type="hidden" name="cart_id" value="{{ cart_id }}">
-                <!-- Place Order button -->
-                <button id="place-order-btn" style="margin-right: 20px;" type="submit">Place Order</button>
-            </form>
-            
-            
-            <div class="total-cart-value">Total Cart Value: <strong>{{ total_cart_value }}</strong></div>
-        </div>
+        
     </section>
     
 

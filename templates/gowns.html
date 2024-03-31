@@ -513,6 +513,23 @@ nav ul li {
             margin-left: 12px;
             margin-right: 12px;
         }
+
+        .pro select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            color: #000;
+            font-size: 14px;
+            margin-bottom: 10px;
+            width: 50%; /* Adjust the width as needed */
+        }
+
+        .pro select:focus {
+            outline: none;
+            border-color: #558300; /* Change border color on focus */
+            box-shadow: 0 0 5px rgba(85, 131, 0, 0.5); /* Add box shadow on focus */
+        }
     </style>
 </head>
 
@@ -563,9 +580,23 @@ nav ul li {
 
                     <h4>Rs 80,999</h4>
                 </div>
-                <button class="pro-button" data-product-id="9">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
+                <form class="add-to-cart-form" action="/cart" method="POST">
+                    <select name="size" required>
+                        <option value="" disabled selected>Select Size</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                    <!-- Hidden input field to store the product ID -->
+                    <input type="hidden" name="product_id" value="9">
+                    <input type="hidden" name="quantity" value="1">
+                    <button class="pro-button" type="submit">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                </form>
             </div>
             <div class="pro">
                 <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\gown2.jpg" alt="product1" />
@@ -582,9 +613,23 @@ nav ul li {
 
                     <h4>Rs 1,00,000</h4>
                 </div>
-                <button class="pro-button" data-product-id="10">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
+                <form class="add-to-cart-form" action="/cart" method="POST">
+                    <select name="size" required>
+                        <option value="" disabled selected>Select Size</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                    <!-- Hidden input field to store the product ID -->
+                    <input type="hidden" name="product_id" value="10">
+                    <input type="hidden" name="quantity" value="1">
+                    <button class="pro-button" type="submit">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                </form>
             </div>
             
             <div class="pro">
@@ -601,10 +646,26 @@ nav ul li {
                     </div>
 
                     <h4>Rs 9,999</h4>
+                    
                 </div>
-                <button class="pro-button" data-product-id="11">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
+                <form class="add-to-cart-form" action="/cart" method="POST">
+                    <select name="size" required>
+                        <option value="" disabled selected>Select Size</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                    <!-- Hidden input field to store the product ID -->
+                    <input type="hidden" name="product_id" value="11">
+                    <input type="hidden" name="quantity" value="1">
+                    <button class="pro-button" type="submit">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                </form>
+
             </div>
             <div class="pro">
                 <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\gown5.jpg" alt="product1" />
@@ -621,9 +682,24 @@ nav ul li {
 
                     <h4>Rs 9,999</h4>
                 </div>
-                <button class="pro-button" data-product-id="12">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
+                <form class="add-to-cart-form" action="/cart" method="POST">
+                    <select name="size" required>
+                        <option value="" disabled selected>Select Size</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                    <!-- Hidden input field to store the product ID -->
+                    <input type="hidden" name="product_id" value="12">
+                    <input type="hidden" name="quantity" value="1">
+                    <button class="pro-button" type="submit">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                </form>
+
             </div>
             <div class="pro">
                 <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\gown6.jpg" alt="product1" />
@@ -639,9 +715,23 @@ nav ul li {
 
                     <h4>Rs 9,999</h4>
                 </div>
-                <button class="pro-button" data-product-id="13">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
+                <form class="add-to-cart-form" action="/cart" method="POST">
+                    <select name="size" required>
+                        <option value="" disabled selected>Select Size</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                    <!-- Hidden input field to store the product ID -->
+                    <input type="hidden" name="product_id" value="13">
+                    <input type="hidden" name="quantity" value="1">
+                    <button class="pro-button" type="submit">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                </form>
             </div>
             
             
@@ -686,7 +776,14 @@ nav ul li {
 
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        window.addEventListener('beforeunload', function (event) {
+            // Make an AJAX request to logout when the tab/browser is closed
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/logout', false); // Assuming logout route is '/logout'
+            xhr.send();
+        });
+    </script>
 
 </body>
 

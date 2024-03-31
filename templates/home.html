@@ -379,7 +379,14 @@
         </div>
 
     </footer>
-
+    <script>
+        window.addEventListener('beforeunload', function (event) {
+            // Make an AJAX request to logout when the tab/browser is closed
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/logout', false); // Assuming logout route is '/logout'
+            xhr.send();
+        });
+        </script>
 
 </body>
 

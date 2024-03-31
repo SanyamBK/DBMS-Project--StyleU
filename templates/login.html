@@ -287,6 +287,39 @@
             background-color: #b38e37;
         }
 
+        .alert-success {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background-color: #28a745; /* Green background color for success message */
+            color: #fff; /* White text color */
+            position: relative; /* Needed for positioning the close button */
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #fff; /* White color for close button */
+        }
+        
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+
         .signup-link {
             margin-top: 15px;
             font-size: 14px;
@@ -324,12 +357,30 @@
         </div>
     </section>
 
+    <!-- Add this snippet to display the success message -->
+    <!-- Add this snippet to display the success message -->
+    {% if success_message %}
+    <div id="success-message" class="alert alert-success" role="alert">
+        {{ success_message }}
+        <span class="close-btn">&times;</span>
+    </div>
+    {% endif %}
+
+    {% if error_message %}
+    <div id ="error-message" class="alert alert-danger" role="alert">
+        {{ error_message }}
+        <span class="close-btn">&times;</span>
+    </div>
+    {% endif %}
+
+
+
     <div class="login-container">
         <h2>Login</h2>
-        <form class="login-form" action="" method="POST">
+        <form class="login-form" action="/login" method="POST">
             <input type="text" name="email" id="email" placeholder="Email" required>
             <input type="password" name="password" id="password" placeholder="Password" required>
-            <input type="submit" value="Login">
+            <input type="submit" value="Sign In">
         </form>
         <div class="signup-link">
             <p>New here? <a href="/signup">Sign Up</a></p>
@@ -374,6 +425,61 @@
         </div>
 
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.getElementById('success-message');
+            var errorMessage = document.getElementById('error-message');
+            if (successMessage) {
+                // Fade out after 3 seconds
+                setTimeout(function() {
+                    successMessage.style.opacity = '0';
+                    setTimeout(function() {
+                        successMessage.style.display = 'none';
+                    }, 600); // 0.6 seconds transition time
+                }, 3000); // 3 seconds timeout
+        
+                // Close button functionality
+                var closeBtn = successMessage.querySelector('.close-btn');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        successMessage.style.opacity = '0';
+                        setTimeout(function() {
+                            successMessage.style.display = 'none';
+                        }, 600); // 0.6 seconds transition time
+                    });
+                }
+            } else if (errorMessage) {
+                // Fade out after 3 seconds
+                setTimeout(function() {
+                    errorMessage.style.opacity = '0';
+                    setTimeout(function() {
+                        errorMessage.style.display = 'none';
+                    }, 600); // 0.6 seconds transition time
+                }, 3000); // 3 seconds timeout
+                
+                // Close button functionality
+                var closeBtn = errorMessage.querySelector('.close-btn');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        errorMessage.style.opacity = '0';
+                        setTimeout(function() {
+                            errorMessage.style.display = 'none';
+                        }, 600); // 0.6 seconds transition time
+                    });
+                }
+            }
+        });
+
+        window.addEventListener('beforeunload', function (event) {
+            // Make an AJAX request to logout when the tab/browser is closed
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/logout', false); // Assuming logout route is '/logout'
+            xhr.send();
+        });
+        </script>
+        
+    </script>
 
 </body>
 
