@@ -252,12 +252,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: calc(85vh - 90px); /* Adjusted height considering the header height */
+            height: calc(100vh - 90px); /* Adjusted height considering the header height */
             padding: 20px;
         }
 
         .signup-form {
-            width: 300px;
+            width: 500px;
             padding: 20px;
             border: 1px solid #e7c25c;
             border-radius: 5px;
@@ -273,6 +273,7 @@
             border-radius: 5px;
             background-color: #222;
             color: white;
+
         }
 
         .signup-form input[type="submit"] {
@@ -284,11 +285,41 @@
             color: black;
             font-weight: bold;
             cursor: pointer;
+            
         }
 
         .signup-form input[type="submit"]:hover {
             background-color: #b38e37;
         }
+
+        /* CSS for styling the error message alert */
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        .signup-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #e7c25c;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 
@@ -310,14 +341,29 @@
         </div>
     </section>
 
+    <!-- Add this snippet to display the error message -->
+    {% if error_message %}
+    <div class="alert alert-danger" role="alert">
+        {{ error_message }}
+    </div>
+    {% endif %}
+
     <div class="signup-container">
         <h2>Sign Up</h2>
-        <form class="signup-form" action="\success" method="POST">
-            <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>
+        <form class="signup-form" action="/signup" method="POST">
+            <input type="text" name="username" id="username" placeholder="Full Name" required>
             <input type="email" name="email" id="email" placeholder="Email" required>
             <input type="password" name="password" id="password" placeholder="Password" required>
+            <input type="text" name="contact_number" id="contact_number" placeholder="Contact Number" required>
+            <input type="text" name="address" id="address" placeholder="Address" required>
+            <input type="text" name="city" id="city" placeholder="City" required>
+            <input type="text" name="state" id="state" placeholder="State" required>
+            <input type="text" name="pincode" id="pincode" placeholder="Pincode" required>
             <input type="submit" value="Sign Up">
         </form>
+        <div class="signup-link">
+            <p>Not a new user? <a href="/login">Sign In</a></p>
+        </div>
     </div>
 
     <footer class="section-p1">
@@ -358,6 +404,15 @@
         </div>
 
     </footer>
+
+    <script>
+        window.addEventListener('beforeunload', function (event) {
+            // Make an AJAX request to logout when the tab/browser is closed
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/logout', false); // Assuming logout route is '/logout'
+            xhr.send();
+        });
+        </script>
 
 </body>
 

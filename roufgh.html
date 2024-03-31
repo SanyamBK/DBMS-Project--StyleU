@@ -375,6 +375,25 @@
             padding: 10px 0;
         }
 
+        /* Add this CSS to style the size dropdown */
+    .pro select {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        color: #000;
+        font-size: 14px;
+        margin-bottom: 10px;
+        width: 50%; /* Adjust the width as needed */
+    }
+
+    .pro select:focus {
+        outline: none;
+        border-color: #558300; /* Change border color on focus */
+        box-shadow: 0 0 5px rgba(85, 131, 0, 0.5); /* Add box shadow on focus */
+    }
+
+
         /*h5*/
         #product1 .pro h5 {
             font-size: 12px;
@@ -406,21 +425,6 @@
         }
 
 
-        /* .left img{
-    width: 65px;
-    height: 60px;
-}
-
-.container{
-    max-width: 80vw;
-    background: grey;
-    margin: auto;
-}
-
-nav ul li {
-    list-style: none;
-    padding: 0 18px;
-} */
 
         footer {
             display: flex;
@@ -593,7 +597,6 @@ nav ul li {
                     </select>
                     <!-- Hidden input field to store the product ID -->
                     <input type="hidden" name="product_id" value="1">
-                    <input type="hidden" name="quantity" value="1">
                     <button class="pro-button" type="submit">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
@@ -626,7 +629,6 @@ nav ul li {
                     </select>
                     <!-- Hidden input field to store the product ID -->
                     <input type="hidden" name="product_id" value="2">
-                    <input type="hidden" name="quantity" value="1">
                     <button class="pro-button" type="submit">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
@@ -659,12 +661,10 @@ nav ul li {
                     </select>
                     <!-- Hidden input field to store the product ID -->
                     <input type="hidden" name="product_id" value="3">
-                    <input type="hidden" name="quantity" value="1">
                     <button class="pro-button" type="submit">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
                 </form>
-            </div>
             <div class="pro">
                 <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\product4.jpeg" alt="product1" />
                 <div class="des">
@@ -692,7 +692,6 @@ nav ul li {
                     </select>
                     <!-- Hidden input field to store the product ID -->
                     <input type="hidden" name="product_id" value="4">
-                    <input type="hidden" name="quantity" value="1">
                     <button class="pro-button" type="submit">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
@@ -725,7 +724,6 @@ nav ul li {
                     </select>
                     <!-- Hidden input field to store the product ID -->
                     <input type="hidden" name="product_id" value="5">
-                    <input type="hidden" name="quantity" value="1">
                     <button class="pro-button" type="submit">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
@@ -758,7 +756,6 @@ nav ul li {
                     </select>
                     <!-- Hidden input field to store the product ID -->
                     <input type="hidden" name="product_id" value="6">
-                    <input type="hidden" name="quantity" value="1">
                     <button class="pro-button" type="submit">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
@@ -792,7 +789,6 @@ nav ul li {
                     </select>
                     <!-- Hidden input field to store the product ID -->
                     <input type="hidden" name="product_id" value="7">
-                    <input type="hidden" name="quantity" value="1">
                     <button class="pro-button" type="submit">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
@@ -824,7 +820,6 @@ nav ul li {
                     </select>
                     <!-- Hidden input field to store the product ID -->
                     <input type="hidden" name="product_id" value="8">
-                    <input type="hidden" name="quantity" value="1">
                     <button class="pro-button" type="submit">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
