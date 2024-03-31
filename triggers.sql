@@ -42,17 +42,18 @@ SELECT daID, availability FROM delivery_agent WHERE daID = 1;
 ---------------------------------------------------------------------------------------------------------------------------------
 
 -- Trigger-03: Change a delivery agent's availability to True when they complete an order
-DROP TRIGGER IF EXISTS da_available;
-DELIMITER $$
-CREATE TRIGGER da_available AFTER UPDATE ON orders
+DELIMITER //
+
+CREATE TRIGGER UpdateDeliveryPersonStatus
+AFTER INSERT ON Order_User
 FOR EACH ROW
 BEGIN
-    IF NOT EXISTS (SELECT * FROM orders WHERE daID = NEW.daID AND delivery_date IS NULL) THEN
-        UPDATE delivery_agent SET avalability = TRUE WHERE daID = NEW.daID;
-    END IF;
+    UPDATE Delivery_Person
+    SET Status = 'NA'
+    WHERE AgentID = NEW.AgentID;
 END;
-$$
-DELIMITER ;
+//
+DELIMITER ;
 
 -- Helper queries to test Trigger da_available (Can also be tested directly through the front-end)
 INSERT INTO orders (customerID, daID, order_date) VALUES (1, 201, '2020-12-12');
@@ -79,3 +80,21 @@ UPDATE orders SET delivery_date = NULL WHERE orderID = 634;
 UPDATE orders SET delivery_date = NULL WHERE orderID = 741;
 -- since in the implementation, the delivery_date is never set back to NULL, we won't use the trigger to set the availability to FALSE
 UPDATE delivery_agent SET avalability = FALSE WHERE daID = 1;
+
+
+-- Quantity of Inventory goes below 5, then add the original quantity to 50
+DELIMITER //
+
+CREATE TRIGGER IncreaseInventory
+AFTER UPDATE ON Inventory
+FOR EACH ROW
+BEGIN
+    IF NEW.Quantity < 5 THEN
+        UPDATE Inventory
+        SET Quantity = Quantity + 50
+        WHERE ProductID = NEW.ProductID;
+    END IF;
+END;
+//
+
+DELIMITER ;
