@@ -34,7 +34,7 @@ class UserDetail(UserMixin,  db.Model):
     City = db.Column(db.String(100), nullable=False)
     State = db.Column(db.String(100), nullable=False)
     Pincode = db.Column(db.String(100), nullable=False)
-    
+    User_Status = db.Column(db.Enum('Active', 'Blocked'), nullable=False, default='Active')
     def get_id(self):
         return str(self.UserID)
 
@@ -52,6 +52,11 @@ class ClothingItem(db.Model):
     def get_price(self):
         return str(self.Price)
 
+class LoginAttempts(db.Model):
+    __tablename__ = 'Login_Attempts'
+    AttemptID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    UserID = db.Column(db.Integer, db.ForeignKey('User_Details.UserID'), nullable=False)
+    Attempt_Date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 class ProductFeedback(db.Model):
     __tablename__ = 'Product_Feedback'
@@ -98,13 +103,17 @@ class Cart(db.Model):
     CartID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     UserID = db.Column(db.Integer, nullable=False)
     ProductID = db.Column(db.Integer, nullable=False)
-    Size = db.Column(db.Enum('XS', 'S', 'M', 'L', 'XL', 'XXL'), nullable=False)
+    Size = db.Column(db.Enum('XS', 'S', 'M', 'L', 'XL', 'XXL'), nullable=False)  # Add this line
     Quantity = db.Column(db.Integer, nullable=False)
-    Value_Cart = db.Column(db.Double, nullable=False)
+    Value_Cart = db.Column(db.Float, nullable=False)  # Corrected to db.Float instead of db.Double
+
+    # Add the rest of your model definition here
+
 
 class PurchaseHistory(db.Model):
     __tablename__ = 'Purchase_history'
-    UserID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    Purchase_ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    UserID = db.Column(db.Integer, nullable=False)
     OrderID = db.Column(db.Integer, nullable=False)
     Order_Date = db.Column(db.Date, nullable=False)
     Status_Order = db.Column(db.Enum('D', 'ND'), nullable=False)
@@ -118,7 +127,7 @@ class Inventory(db.Model):
 class OrderUser(db.Model):
     __tablename__ = 'Order_User'
     OrderID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    Value_Order = db.Column(db.Integer, nullable=False)
+    Value_Order = db.Column(db.Float, nullable=False)
     UserID = db.Column(db.Integer, nullable=False)
     Placement = db.Column(db.String(100), nullable=False)
     Delivery_Date = db.Column(db.Date, nullable=False)
@@ -150,24 +159,39 @@ def success():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    # if request method is get and user is already logged in, redirect to the success page
-    if request.method == 'GET' and current_user.is_authenticated:
-        return redirect(url_for('success'))
-    error_message = None
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        user = UserDetail.query.filter_by(Email_ID=email).first()
+        if user and user.Passwords == password and user.User_Status == 'Active':
+            # Clear the login attempts on successful login
+            LoginAttempts.query.filter_by(UserID=user.UserID).delete()
+            db.session.commit()
+            login_user(user)
+            return redirect(url_for('success'))
         
-        existing_user = UserDetail.query.filter_by(Email_ID=email).first()
-        
-        if existing_user and existing_user.Passwords == password:
-            login_user(existing_user)
-            session.permanent = True
-            return redirect(url_for('success'))  # Redirect to the success page
-        else:
-            error_message = 'Invalid user credentials. Please check your email and password and then try again.'
+        if user and user.Passwords == password and user.User_Status == 'Blocked':
+            error_message = 'User is blocked. Please contact support to unblock your account.'
             return render_template('login.html', error_message=error_message)
-            
+        
+        elif user and user.Passwords != password:
+            if user.User_Status == 'Blocked':
+                error_message = 'User is blocked. Please contact support to unblock your account.'
+                return render_template('login.html', error_message=error_message)
+            # Insert a record into the login attempts table on failed login
+            attempt = LoginAttempts(UserID=user.UserID)
+            db.session.add(attempt)
+            db.session.commit()
+            # Check the number of failed attempts for the user filter by date and user ID, check for past 24 hours
+            failed_attempts = LoginAttempts.query.filter(LoginAttempts.Attempt_Date >= datetime.now() - timedelta(days=1), LoginAttempts.UserID == user.UserID).count()
+            remaining_attempts = 5 - failed_attempts      
+            error_message = f'Incorrect password. {remaining_attempts} attempts remaining.'
+            return render_template('login.html', error_message=error_message)
+        
+        else:
+            error_message = 'User not found. Please sign up to continue.'
+            return render_template('login.html', error_message=error_message)
+
     return render_template('login.html')
 
 @app.route('/admin/inventory')
@@ -206,7 +230,8 @@ def signup():
                 Address=address,
                 City=city,
                 State=state,
-                Pincode=pincode
+                Pincode=pincode,
+                User_Status='Active'
             )
             db.session.add(new_user)
             db.session.commit()
@@ -320,6 +345,18 @@ def order_history():
                 AgentID=delivery_personnel.AgentID if delivery_personnel else None
             )
             db.session.add(new_order)
+            
+            db.session.commit()
+            #add to purchase history
+            purchase_history = PurchaseHistory(
+                UserID=current_user.UserID,
+                OrderID=new_order.OrderID,
+                Order_Date=datetime.now(),
+                Status_Order='ND',
+                Delivery_Date=delivery_date
+            )
+            
+            db.session.add(purchase_history)
  
             # Update the order ID for the assigned delivery personnel
             if delivery_personnel:
@@ -329,6 +366,8 @@ def order_history():
             inventory_item = Inventory.query.filter_by(ProductID=item.ProductID).first()
             if inventory_item:
                 inventory_item.Quantity -= item.Quantity
+                
+            
                 
         
         # Clear the cart after placing the order
@@ -344,7 +383,7 @@ def order_history():
             
         return render_template('orders.html', order_history=order_history, success_message=success_message)
     
-    # Fetch order history associated with the current user
+    # Fetch order history associated with the current user using purchase history
     order_history = OrderUser.query.filter_by(UserID=current_user.UserID).all()
     
     for order in order_history:

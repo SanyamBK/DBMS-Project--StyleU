@@ -494,7 +494,6 @@
                     <p>Size: {{ order.Product_Size }}</p>
                     <p>Delivery Status: {% if order.Status_Order == 'D' %} Delivered {% else %} Not Delivered {% endif %}</p>
                     <p>Delivery Date: {{ order.Delivery_Date }}</p>
-                    <p>Delivery Personnel: {{ order.Delivery_Personnel }}</p>
                 </div>
             {% endfor %}
         </div>
