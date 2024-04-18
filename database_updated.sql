@@ -1,5 +1,4 @@
-drop database if exists StyleU;
-
+drop DATABASE styleu;
 create database if not exists StyleU;
 use StyleU;
 
@@ -17,6 +16,9 @@ Create Table if not exists User_Details
     Pincode varchar(100) not null,
     UNIQUE(Email_ID)
 );
+ALTER TABLE User_Details
+ADD COLUMN User_Status ENUM('Active', 'Blocked') DEFAULT 'Active';
+
 
 
 Create Table if not exists Clothing_Item
@@ -47,10 +49,18 @@ Create Table if not exists Product_Feedback
 );
 
 
+CREATE TABLE IF NOT EXISTS Login_Attempts (
+    AttemptID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    Attempt_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES User_Details(UserID)
+);
+
+
 
 Create Table if not exists Delivery_Person
 (
-        AgentID int Primary Key auto_increment not null,
+    AgentID int Primary Key auto_increment not null,
     Agent_Name varchar(100) not null,
     Contact_Number varchar(100) not null,
     OrderID int not null,
@@ -96,40 +106,25 @@ CREATE TABLE IF NOT EXISTS Cart (
     CartID INT PRIMARY KEY AUTO_INCREMENT,
     UserID INT NOT NULL,
     ProductID INT NOT NULL,
+    Size enum('XS', 'S', 'M', 'L', 'XL', 'XXL') not null,
     Quantity INT NOT NULL,
     Value_Cart DECIMAL(12, 2) NOT NULL,
-    FOREIGN KEY (UserID) REFERENCES User_Details(UserID) ON DELETE CASCADE,
-    FOREIGN KEY (ProductID) REFERENCES Clothing_Item(ProductID) ON DELETE CASCADE
+    FOREIGN KEY (UserID) REFERENCES User_Details(UserID),
+    FOREIGN KEY (ProductID) REFERENCES Clothing_Item(ProductID)
 );
-Alter Table Cart
-Add Size enum('XS', 'S', 'M', 'L', 'XL', 'XXL') not null;
-
--- Drop the existing foreign key constraint
-
-use styleu;
--- Drop the existing foreign key constraints
-ALTER TABLE Cart DROP FOREIGN KEY cart_ibfk_1;
-ALTER TABLE Cart DROP FOREIGN KEY cart_ibfk_2;
-
--- Recreate the foreign key constraints without ON DELETE CASCADE
-ALTER TABLE Cart
-ADD CONSTRAINT FK_UserID FOREIGN KEY (UserID) REFERENCES User_Details(UserID),
-ADD CONSTRAINT FK_ProductID FOREIGN KEY (ProductID) REFERENCES Clothing_Item(ProductID);
-
--- Drop the size column
-ALTER TABLE Cart DROP COLUMN Size;
 
 
 
 Create Table if not exists Purchase_history
 (
-    UserID int Primary Key auto_increment not null,
+    Purchase_ID int Primary Key auto_increment not null,
+    UserID int not null,
     OrderID int not null,
     Order_Date date not null,
     Status_Order enum('D', 'ND'),
     Delivery_Date date not null,
     
-    Foreign Key (UserID) references user_details(UserID) on delete Cascade
+    Foreign Key (UserID) references user_details(UserID)
 );
 
 
@@ -157,49 +152,30 @@ Create Table if not exists Order_User
     Status_Order Enum('D', 'ND'),
     AgentID int not null,
     
-    Foreign Key(UserID) references User_Details(UserID) On Delete Cascade,
-    Foreign Key(UserID) references Cart(UserID),
-    Foreign Key(ProductID) references Cart(ProductID),
-    Foreign Key(AgentID) references delivery_person(AgentID) On delete Cascade
+    Foreign Key(UserID) references User_Details(UserID),
+    Foreign Key(AgentID) references delivery_person(AgentID)
 );
 ALTER TABLE order_user ADD Product_Size ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL') NOT NULL AFTER Product_Name;
 
-use styleu;
+-- use styleu;
+-- -- Drop the existing foreign key constraints
+-- ALTER TABLE Cart DROP FOREIGN KEY cart_ibfk_1;
+-- ALTER TABLE Cart DROP FOREIGN KEY cart_ibfk_2;
 
--- Step 1: Add a new column
-ALTER TABLE clothing_item
-ADD COLUMN Price_new DECIMAL(10, 2);
+-- -- Recreate the foreign key constraints without ON DELETE CASCADE
+-- ALTER TABLE Cart
+-- ADD CONSTRAINT FK_UserID FOREIGN KEY (UserID) REFERENCES User_Details(UserID),
+-- ADD CONSTRAINT FK_ProductID FOREIGN KEY (ProductID) REFERENCES Clothing_Item(ProductID);
 
--- Step 2: Update the new column with values from the old column
-UPDATE clothing_item
-SET Price_new = Price;
+-- Drop the size column
+-- ALTER TABLE Cart DROP COLUMN Size;
 
--- Step 3: Drop the old column
-ALTER TABLE clothing_item
-DROP COLUMN Price;
+-- Drop the existing foreign key constraint
+-- ALTER TABLE Purchase_history DROP FOREIGN KEY Purchase_history_ibfk_1;
 
--- Step 4: Rename the new column to the original column name
-ALTER TABLE clothing_item
-CHANGE COLUMN Price_new Price DECIMAL(10, 2);
+-- -- Recreate the foreign key constraint without ON DELETE CASCADE
+-- ALTER TABLE Purchase_history ADD CONSTRAINT FK_UserID FOREIGN KEY (UserID) REFERENCES User_Details(UserID);
 
-
-use styleu;
-
--- Step 1: Add a new column
-ALTER TABLE clothing_item
-ADD COLUMN Value_Cart_new DECIMAL(12, 2);
-
--- Step 2: Update the new column with values from the old column
-UPDATE Cart
-SET Value_Cart_new = Value_Cart;
-
--- Step 3: Drop the old column
-ALTER TABLE Cart
-DROP COLUMN Value_Cart;
-
--- Step 4: Rename the new column to the original column name
-ALTER TABLE Cart
-CHANGE COLUMN Value_Cart_new Value_Cart DECIMAL(12, 2);
 
 
 USE StyleU;
@@ -213,12 +189,12 @@ VALUES
 ('YSMLOIU', 9999.00, 'M', NULL, 'Blue', 'Slim Fit 3 Piece Wedding Suit for Men', 5),
 ('YouthUp', 9999.00, 'M', NULL, 'Grey Black', 'Men\'s 3 Piece Suit Slim Fit with Single Row Jacket Suits and Vest', 5),
 ('unbranded', 9999.00, 'M', NULL, 'Dark Blue', 'Men\'s Suits Leisure Suit For Men Four Seasons Business Groom Wedding Dress Formal Fashion Slim-fit Two-piece', 5),
-('TOPGH', 9999.00, 'M', NULL, 'Blue Black', 'Men\'s 3 PCS Suit Notch Lapel Solid Wedding Work Slim Tuxedo Fit', 5);
+('TOPGH', 9999.00, 'M', NULL, 'Blue Black', 'Men\'s 3 PCS Suit Notch Lapel Solid Wedding Work Slim Tuxedo Fit', 5),
 ('Lhuilier', 80999.00, 'F', NULL, 'White', 'Stunning off shoulder lace wedding dress long train', 5),
 ('Ricco India', 100000.00, 'F', NULL, 'Black', 'Black Gown', 5),
 ('LimeRoad', 9999.00, 'F', NULL, 'Cyan', 'Women Gorgeous Gowns Flower Printed Sky', 5),
 ('unbranded', 9999.00, 'F', NULL, 'Sky Blue', 'Lace Middle Sleeves V-neck Lace-up Floor Length Ball Gown Dress', 5),
-('unbranded', 9999.00, 'F', NULL, 'Pastel Green', 'Pastel Green Net High Netted Gown', 5);
+('unbranded', 9999.00, 'F', NULL, 'Pastel Green', 'Pastel Green Net High Netted Gown', 5),
 ('Nike', 999.00, 'M', 'XS', NULL, 'Floral Lily Shirt', 5),
 ('Adidas', 499.00, 'M', 'S', NULL, 'Cartoon Astronaut Shirt', 5),
 ('Van Heusen', 799.00, 'M', 'M', NULL, 'Floral Shirt', 5),
@@ -227,7 +203,7 @@ VALUES
 ('H&M', 1999.00, 'M', 'XXL', 'Blue', 'Denim Full Sleeves Shirt', 5),
 ('GAP', 999.00, 'M', NULL, 'Grey', 'Full sleeves shirt with check pattern', 5),
 ('Khadi', 999.00, 'M', 'L', 'Greyish Black', 'Simple Shirt', 5),
-('Zara', 2599.00, 'M', NULL, 'Black', 'Black T-shirt', 5);
+('Zara', 2599.00, 'M', NULL, 'Black', 'Black T-shirt', 5),
 ('H&M', 1999.00, 'F', NULL, 'Black', 'Black Dress', 5),
 ('H&M', 999.00, 'F', NULL, 'Grey', 'Casual Dress in Grey', 5),
 ('Van Heusen', 1799.00, 'F', NULL, 'Black', 'Black Dress for Night Wear', 5),
@@ -270,6 +246,10 @@ VALUES
 (28, 30),
 (29, 30),
 (30, 30);
+
+
+
+
 
 
 INSERT INTO Delivery_Person (AgentID,Agent_Name, Contact_Number, OrderID, Person_Rating)
