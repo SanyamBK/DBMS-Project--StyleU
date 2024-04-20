@@ -24,18 +24,3 @@ END//
 
 DELIMITER ;
 
-DELIMITER //
-
-CREATE TRIGGER IncreaseInventory
-AFTER UPDATE ON Inventory
-FOR EACH ROW
-BEGIN
-    IF NEW.Quantity < 5 THEN
-        UPDATE Inventory
-        SET Quantity = Quantity + 50
-        WHERE ProductID = NEW.ProductID;
-    END IF;
-END;
-//
-
-DELIMITER ;
