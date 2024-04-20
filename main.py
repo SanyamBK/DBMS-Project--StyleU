@@ -135,6 +135,7 @@ class OrderUser(db.Model):
     ProductID = db.Column(db.Integer, nullable=False)
     Product_Name = db.Column(db.String(100), nullable=False)
     Product_Size = db.Column(db.Enum('XS', 'S', 'M', 'L', 'XL', 'XXL'), nullable=False)
+    Quantity = db.Column(db.Integer, nullable=False)
     Status_Order = db.Column(db.Enum('D', 'ND'), nullable=False)
     AgentID = db.Column(db.Integer, nullable=False)
     
@@ -288,7 +289,16 @@ def cart():
             
             db.session.commit()
             flash('Product added to cart successfully!', 'success')  # Flash message
-
+            
+            cart_items = Cart.query.filter_by(UserID=current_user.UserID).all()
+    
+            # total_cart_value = 0
+            
+            # for item in cart_items:
+            #     item.clothing_item = ClothingItem.query.get(item.ProductID)
+            #     total_cart_value += item.Value_Cart
+        
+            # return render_template('cart.html', cart_items=cart_items, total_cart_value=total_cart_value)
             # Redirect to cart page after adding item
             return redirect(url_for('cart'))
         except Exception as e:
@@ -305,7 +315,6 @@ def cart():
         item.clothing_item = ClothingItem.query.get(item.ProductID)
         total_cart_value += item.Value_Cart
         
-
     # Render cart page with cart items
     return render_template('cart.html', cart_items=cart_items, total_cart_value=total_cart_value)
 
@@ -321,6 +330,21 @@ def order_history():
         if not cart_items:
             error_message = 'Cannot place an order with an empty cart. Please add some items to the cart and then try again.'
             return render_template('cart.html', error_message=error_message)
+        
+        total_quantity = sum(item.Quantity for item in cart_items)
+        if total_quantity > 10:
+            error_message = 'You cannot order more than 10 items at once.'
+            cart_items = Cart.query.filter_by(UserID=current_user.UserID).all()
+    
+            total_cart_value = 0
+            
+            for item in cart_items:
+                item.clothing_item = ClothingItem.query.get(item.ProductID)
+                total_cart_value += item.Value_Cart
+                
+            # Render cart page with cart items
+            return render_template('cart.html',error_message=error_message, cart_items=cart_items, total_cart_value=total_cart_value)
+        
         # Handle the case when the order is placed successfully
         cart_items = Cart.query.filter_by(UserID=current_user.UserID).all()
         for item in cart_items:
@@ -341,6 +365,7 @@ def order_history():
                 ProductID=item.ProductID,
                 Product_Name=clothing_item.Descriptions,
                 Product_Size=item_size,
+                Quantity=item.Quantity,
                 Status_Order='ND',
                 AgentID=delivery_personnel.AgentID if delivery_personnel else None
             )
@@ -366,10 +391,7 @@ def order_history():
             inventory_item = Inventory.query.filter_by(ProductID=item.ProductID).first()
             if inventory_item:
                 inventory_item.Quantity -= item.Quantity
-                
-            
-                
-        
+
         # Clear the cart after placing the order
         Cart.query.filter_by(UserID=current_user.UserID).delete()
                 

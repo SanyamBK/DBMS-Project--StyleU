@@ -1,3 +1,4 @@
+=======
 -- Trigger-01: Create a wallet for a new customer as soon as a customer is created
 
 DROP TRIGGER IF EXISTS create_wallet;
@@ -98,3 +99,4 @@ END;
 //
 
 DELIMITER ;
+
