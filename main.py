@@ -160,6 +160,9 @@ def success():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('success'))
+    
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -266,7 +269,7 @@ def cart():
             price = clothing_item.get_price()
             # Check if the same product is already in the user's cart
             existing_cart_item = Cart.query.filter_by(UserID=current_user.UserID, ProductID=product_id).first()
-            # float(existing_cart_item.)
+
             if existing_cart_item:
                 # If the same product is found in the cart, increment the quantity and update the cart value
                 existing_cart_item.Quantity += quantity
@@ -289,17 +292,7 @@ def cart():
             
             db.session.commit()
             flash('Product added to cart successfully!', 'success')  # Flash message
-            
             cart_items = Cart.query.filter_by(UserID=current_user.UserID).all()
-    
-            # total_cart_value = 0
-            
-            # for item in cart_items:
-            #     item.clothing_item = ClothingItem.query.get(item.ProductID)
-            #     total_cart_value += item.Value_Cart
-        
-            # return render_template('cart.html', cart_items=cart_items, total_cart_value=total_cart_value)
-            # Redirect to cart page after adding item
             return redirect(url_for('cart'))
         except Exception as e:
             db.session.rollback()
@@ -325,7 +318,7 @@ def order_history():
     
     if request.method == 'POST':
         
-        #if cart is empty, show error message
+        # if cart is empty, show error message
         cart_items = Cart.query.filter_by(UserID=current_user.UserID).all()
         if not cart_items:
             error_message = 'Cannot place an order with an empty cart. Please add some items to the cart and then try again.'
