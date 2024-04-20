@@ -24,10 +24,9 @@ END//
 
 DELIMITER ;
 
-
 DELIMITER //
 
-CREATE TRIGGER if not exists Update_Inventory_On_Low_Stock
+CREATE TRIGGER Update_Inventory_On_Low_Stock
 AFTER INSERT ON Order_User
 FOR EACH ROW
 BEGIN
@@ -46,4 +45,3 @@ BEGIN
 END//
 
 DELIMITER ;
-

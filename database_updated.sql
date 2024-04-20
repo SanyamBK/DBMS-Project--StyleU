@@ -265,3 +265,28 @@ VALUES
 (8,'Pooja Reddy', '1472583690', NULL, 5),
 (9,'Suresh Tiwari', '3698521470', NULL, 4),
 (10,'Meera Joshi', '8529637410', NULL, 3);
+
+
+INSERT INTO Brand_Table (Brand, Contact_number, Email, Brand_Rating, Registered_Date) 
+VALUES 
+('French Crown', '+1234567890', 'contact@frenchcrown.com', 5, '2024-04-18'),
+('Peter England', '+1987654321', 'contact@peterengland.com', 4, '2024-04-18'),
+('Louis Philippe', '+1122334455', 'contact@louisphilippe.com', 4, '2024-04-18'),
+('YSMLOIU', '+1122334455', 'contact@ysmloiu.com', 3, '2024-04-18'),
+('YouthUp', '+1122334455', 'contact@youthup.com', 3, '2024-04-18'),
+('unbranded', '+1122334455', 'contact@unbranded.com', 2, '2024-04-18'),
+('TOPGH', '+1122334455', 'contact@topgh.com', 3, '2024-04-18'),
+('Lhuilier', '+1122334455', 'contact@lhuilier.com', 4, '2024-04-18'),
+('Ricco India', '+1122334455', 'contact@riccoindia.com', 3, '2024-04-18'),
+('LimeRoad', '+1122334455', 'contact@limeroad.com', 4, '2024-04-18'),
+('Nike', '+1122334455', 'contact@nike.com', 5, '2024-04-18'),
+('Adidas', '+1122334455', 'contact@adidas.com', 5, '2024-04-18'),
+('Van Heusen', '+1122334455', 'contact@vanheusen.com', 4, '2024-04-18'),
+('Forever 21', '+1122334455', 'contact@forever21.com', 4, '2024-04-18'),
+('Jian Jing', '+1122334455', 'contact@jianjing.com', 3, '2024-04-18'),
+('H&M', '+1122334455', 'contact@hm.com', 5, '2024-04-18'),
+('GAP', '+1122334455', 'contact@gap.com', 4, '2024-04-18'),
+('Khadi', '+1122334455', 'contact@khadi.com', 3, '2024-04-18'),
+('Zara', '+1122334455', 'contact@zara.com', 5, '2024-04-18'),
+('Louis Vuitton', '+1122334455', 'contact@louisvuitton.com', 5, '2024-04-18'),
+('Manyavar', '+1122334455', 'contact@manyavar.com', 4, '2024-04-18');
