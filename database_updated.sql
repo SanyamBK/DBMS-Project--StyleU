@@ -1,4 +1,4 @@
-drop DATABASE styleu;
+drop DATABASE if exists styleu;
 create database if not exists StyleU;
 use StyleU;
 
@@ -156,6 +156,7 @@ Create Table if not exists Order_User
     Foreign Key(AgentID) references delivery_person(AgentID)
 );
 ALTER TABLE order_user ADD Product_Size ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL') NOT NULL AFTER Product_Name;
+ALTER TABLE order_user ADD Quantity INT NOT NULL AFTER Product_Size;
 
 -- use styleu;
 -- -- Drop the existing foreign key constraints

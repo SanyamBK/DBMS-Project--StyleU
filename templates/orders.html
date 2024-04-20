@@ -492,6 +492,7 @@
                     <p>Product Description: {{ order.Product_Name }}</p>
                     <p>Colour: {{ order.clothing_item.Colour }}</p>
                     <p>Size: {{ order.Product_Size }}</p>
+                    <p>Quantity: {{ order.Quantity }}</p>
                     <p>Delivery Status: {% if order.Status_Order == 'D' %} Delivered {% else %} Not Delivered {% endif %}</p>
                     <p>Delivery Date: {{ order.Delivery_Date }}</p>
                 </div>
