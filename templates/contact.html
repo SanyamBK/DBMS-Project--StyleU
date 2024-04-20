@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>StyleU</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | StyleU</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" href="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images/logo.avif" type="image/x-icon">
     <style>
-        /* import open sans */
+        /* Import open sans */
         @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
         * {
@@ -18,7 +18,6 @@
             font-family: "Spartan", sans-serif;
         }
 
-
         html,
         body {
             scroll-behavior: smooth;
@@ -26,66 +25,22 @@
             width: 100%;
             background-color: black;
             color: white;
-            background-image: url(https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images/home4-transformed.jpeg);
-            height: 100%;
-            width: 100%;
-
             background-size: cover;
             background-position: top 50% right 25%;
-        }
-
-
-        h1 {
-            font-size: 50px;
-            line-height: 64px;
-
-        }
-
-        h2 {
-            font-size: 46px;
-            line-height: 54px;
-
-        }
-
-        h4 {
-            font-size: 20px;
-
-        }
-
-        h6 {
-            font-weight: 700;
-            font-size: 12px;
-        }
-
-        p {
-            font-size: 16px;
-
-            margin: 15px 0 20px 0;
-        }
-
-        .section-p1 {
-            padding: 40px 80px;
-        }
-
-        .section-p2 {
-            padding: 40px 0;
         }
 
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-
             margin: auto;
-            max-width: 95%;
+            max-width: 100%;
             background-color: rgb(22, 22, 22);
             box-shadow: 0 0 10px rgb(255, 255, 255);
-
             z-index: 999;
             position: sticky;
             top: 0;
             left: 0;
-
         }
 
         .navbar {
@@ -93,6 +48,21 @@
             align-items: center;
             justify-content: space-between;
             margin-right: 25px;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 50px;
+            max-width: 600px; /* Adjusted maximum width */
+            margin-left: auto; /* Center align */
+            margin-right: auto; /* Center align */
+        }
+        
+        .contact-info p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: center; /* Center align */
+            line-height: 1.5; /* Increase line height for better readability */
         }
 
         .navbar li {
@@ -110,81 +80,45 @@
 
         .navbar li a:hover {
             color: rgb(231, 194, 92);
-
         }
 
         .navbar li a.active {
             color: rgb(231, 194, 92);
             border-bottom: 2px solid rgb(231, 194, 92);
-
         }
 
-        .hero {
-
-            margin-top: 250px;
-            margin-left: 2.5%;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        .page-header {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
+            text-align: center;
+            height: 80vh; /* Adjusted to fill more screen height */
+            background-color: #1a1a1a;
+            color: white;
         }
-
-        .hero h4 {
-            padding-bottom: 15px;
-
-        }
-
-        .hero button {
-            background-color: transparent;
-            /* No initial background color */
-            color: #e7c25c;
-            /* Set the text color */
-            border: 2px solid #e7c25c;
-            /* Set the border color */
-            padding: 10px 20px;
-            /* Adjust padding as needed */
-            font-size: 18px;
-            /* Set the font size */
-            border-radius: 5px;
-            /* Optional: add rounded corners */
-            cursor: pointer;
-            width: 200px;
-            transition: background-color 0.3s ease;
-            /* Add a smooth transition effect */
-        }
-
-        .hero button:hover {
-            background-color: #b38e37;
-            /* Change the background color on hover */
-            color: #fff;
-            /* Change text color on hover */
-        }
-
 
         .logo {
             width: 65px;
             height: 60px;
             margin-left: 25px;
             margin-top: 10px;
-            /* Adjust the margin-top value as needed */
-
         }
 
-        #product1 .pro {
-            width: 23%;
-            min-width: 250px;
-            padding: 10px 12px;
-            border: 1px solid #e7c25c;
+        .contact-info {
+            text-align: center;
+            margin-top: 50px;
         }
 
-        #product1 .pro img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
+        .contact-info h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
         }
 
+        .contact-info p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
 
         footer {
             display: flex;
@@ -194,35 +128,23 @@
             background-color: rgb(22, 22, 22);
             background-repeat: no-repeat;
             background-position: 20% 30%;
-            position: fixed;
+            position: relative;
             bottom: 0;
             width: 100%;
             z-index: 999;
-            /* Ensure footer is above other content */
-            background-color: rgba(22, 22, 22, 0.8);
-            /* Adjust the background color and opacity as needed */
+           
         }
-
-        footer p.address {
-            max-width: 500px; /* Adjust the maximum width as needed */
-            word-wrap: break-word; /* Allow long words to break and wrap onto the next line */
-        }
-        
-
 
         footer .col {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             margin-bottom: 20px;
-
         }
 
         footer h4 {
             font-size: 14px;
             padding-bottom: 20px;
-
-
         }
 
         footer p {
@@ -235,7 +157,6 @@
             text-decoration: none;
             color: white;
             margin-bottom: 10px;
-            text-wrap: wrap;
         }
 
         footer a:hover {
@@ -256,97 +177,84 @@
             color: #e7c25c;
         }
 
-        .flex{
+        .flex {
             display: flex;
         }
-        
-        .items-center{
+
+        .items-center {
             align-items: center;
-        } 
-        
-        .justify-center{
+        }
+
+        .justify-center {
             justify-content: center;
         }
-        
-        .space-between{
+
+        .space-between {
             justify-content: space-between;
         }
-        
-        .uppercase{
+
+        .uppercase {
             text-transform: uppercase;
         }
-        
-        .semibold{
+
+        .semibold {
             font-weight: bolder;
         }
-        
-        .mx-2{
+
+        .mx-2 {
             margin-left: 12px;
             margin-right: 12px;
         }
-    </style>
 
+        .section-p1 {
+            padding: 40px 80px;
+        }
+
+        .section-p2 {
+            padding: 40px 0;
+        }
+
+
+    </style>
 </head>
 
 <body>
 
     <section class="header">
         <a href="/">
-            <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images/logo.avif" class="logo" alt="StyleU" />
+            <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\logo.avif" class="logo" alt="StyleU" />
         </a>
-
         <div>
             <ul class="navbar">
-                <li><a class="active" href="/">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/shop">Shop</a></li>
                 <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact Us</a></li>
-
+                <li><a class="active" href="/contact">Contact Us</a></li>
                 <li><a href="/cart"><i class="fa-solid fa-bag-shopping"></i></a></li>
                 <li><a href="/login"><i class="fa-regular fa-user"></i></a></li>
             </ul>
-
         </div>
+    </section>
+    
 
+    <section class="page-header">
+        
+        <div class="contact-info">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need assistance, feel free to contact us using the information below:</p>
+            <p><strong>Address:</strong> Indraprastha Institute of Information Technology Delhi, Okhla Industrial Estate, Phase III, New Delhi, Delhi 110020</p>
+            <p><strong>Phone:</strong> +91 1234567890</p>
+            <p><strong>Email:</strong> contact@styleu.com</p>
+        </div>
     </section>
 
-    <section class="hero">
-        <h4>Exclusive Offer</h4>
-        <h2>Extra Value Deals </h2>
-        <h2>For The Stylish You</h2>
-        <p>Save more with coupons and get upto 30% off on selected products!</p>
-        <a href="/shop"><button>Shop Now</button></a>
-    </section>
 
-    <!-- <section id="product1" class="section-p1">
-        <h2>Featured Products</h2>
-        <p>Summer Collection New Morden Design</p>
-        <div class="pro-container">
-            <div class="pro">
-                <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\product1.jpg" alt="product1" />
-                <div class="des">
-                    <span>adidas</span>
-                    <h5> Cartoon Astronaught T-shirts</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <a href="#"><i class="fal fa-shopping-cart"></i></a>
-            </div>
-        </div>
-    </section> -->
 
     <footer class="section-p1">
 
         <div class="col">
-            <!-- <img src="https://raw.githubusercontent.com/SanyamBK/DBMS-Project--StyleU/main/Images\logo.avif" class="logo" alt="StyleU" /> -->
             <h4>Contact</h4>
-            <p class="address"><strong>Address: </strong> Indraprastha Institute of Information Technology Delhi, Okhla Industrial
+            <p><strong>Address: </strong> Indraprastha Institute of Information Technology Delhi, Okhla Industrial
                 Estate, Phase III, New Delhi, Delhi 110020</p>
             <p><strong>Phone: </strong> +91 1234567890</p>
             <p><strong>Hours: </strong> Mon-Sat, 09:00-17:00</p>
@@ -379,14 +287,7 @@
         </div>
 
     </footer>
-    <script>
-        window.addEventListener('beforeunload', function (event) {
-            // Make an AJAX request to logout when the tab/browser is closed
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/logout', false); // Assuming logout route is '/logout'
-            xhr.send();
-        });
-        </script>
+
 
 </body>
 
