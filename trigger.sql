@@ -2,7 +2,7 @@ use styleu;
 
 DELIMITER //
 
-CREATE TRIGGER Block_User_After_Five_Attempts
+CREATE TRIGGER if not exists Block_User_After_Five_Attempts
 AFTER INSERT ON Login_Attempts
 FOR EACH ROW
 BEGIN
