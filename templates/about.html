@@ -96,7 +96,7 @@
             justify-content: center;
             text-align: center;
             padding: 80px;
-            height: calc(80vh - 100px);
+            height: 80vh; /* Adjusted to fill more screen height */
             background-color: #1a1a1a;
             color: white;
             padding-top: 5vh;
@@ -129,6 +129,9 @@
             margin-top: 20px;
             list-style: none;
             padding-left: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Adjusted to display two founders per row */
+            gap: 10px; /* Adjust gap between items */
         }
 
         .founders-list li {
@@ -316,7 +319,6 @@
                 <li>Anikait Aggarwal (2022072)</li>
                 <li>Prithu Raj Singh (2022381)</li>
                 <li>Sanyam Barwar (2022447)</li>
-            
             </ul>
         </div>
     </section>
@@ -346,13 +348,13 @@
             <a href="#">Delivery Information</a>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms & Conditions</a>
-            <a href="#">Contact Us</a>
+            <a href="/contact">Contact Us</a>
         </div>
 
         <div class="col">
             <h4>My Account</h4>
-            <a href="#">Sign In</a>
-            <a href="#">View Cart</a>
+            <a href="/login">Sign In</a>
+            <a href="/cart">View Cart</a>
             <a href="#">My Wishlist</a>
             <a href="#">Track My Order</a>
             <a href="#">Help</a>
